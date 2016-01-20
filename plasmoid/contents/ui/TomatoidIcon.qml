@@ -20,7 +20,7 @@
  import QtQuick 2.2
  import org.kde.plasma.core 2.0 as PlasmaCore
 
- import "plasmapackage:/code/logic.js" as Logic
+ import "logic.js" as Logic
 
  Item {
 	id: compactItem

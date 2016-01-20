@@ -22,7 +22,7 @@ import QtMultimedia 5.5
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-import "plasmapackage:/code/logic.js" as Logic
+import "logic.js" as Logic
 
 Item {
 	id: tomatoid

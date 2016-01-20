@@ -62,9 +62,8 @@ PlasmaComponents.ToolBarLayout {
 		// anchors.left: parent.left
 		// anchors.right: parent.right
 
-		PlasmaCore.ToolTip {
+		PlasmaCore.ToolTipArea {
 			id: estimatedPomosToolTip
-			target: estimatedPomosField
 			subText: i18n("The estimation of pomodoros necessary to complete this task")
 		}
 

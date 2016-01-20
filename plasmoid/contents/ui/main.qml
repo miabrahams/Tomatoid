@@ -73,7 +73,7 @@ Item {
 		Logic.parseConfig(plasmoid.configuration.completeTasks, completeTasks)
 		Logic.parseConfig(plasmoid.configuration.incompleteTasks, incompleteTasks)
 
-		plasmoid.setBackgroundHints(0);
+		// plasmoid.setBackgroundHints(0);
 		tomatoid.forceActiveFocus();
 	}
 

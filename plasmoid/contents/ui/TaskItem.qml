@@ -69,8 +69,6 @@
 	}
 
 
-	PlasmaCore.Theme { id: theme }
-
 	MouseArea {
 		id:mouseArea
 		anchors.fill: parent
@@ -106,7 +104,7 @@
 				anchors.leftMargin: 4
 				anchors.verticalCenter: parent.verticalCenter
 				visible: !editMode
-				color: theme.textColor
+				color: PlasmaCore.Theme.textColor
 			}
 
 			PlasmaComponents.TextField {

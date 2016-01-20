@@ -55,8 +55,6 @@
 		property int minimumHeight
 		onClicked: plasmoid.togglePopup()
 
-		PlasmaCore.Theme { id: theme }
-
 		PlasmaCore.Svg {
 			id: svgIcon
 			imagePath: plasmoid.file("images", "tomatoid.svgz")
@@ -91,7 +89,7 @@
 				width: Math.max(parent.size*4/9, units.gridUnit * 35)
 				height: width/2
 				anchors.centerIn: parent
-				color: theme.backgroundColor
+				color: PlasmaCore.Theme.backgroundColor
 				border.color: "grey"
 				border.width: 2
 				radius: 4
@@ -103,7 +101,7 @@
 			Text {
 				id: overlayText
 				text: timeString
-				color: theme.textColor
+				color: PlasmaCore.Theme.textColor
 				font.pixelSize: Math.max(timerContainer.size/8, 11)
 				anchors.centerIn: labelRect
 				opacity: labelRect.opacity > 0 ? 1 : 0

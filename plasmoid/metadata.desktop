@@ -12,7 +12,7 @@ X-KDE-PluginInfo-Email=arthur.hvt@gmail.com
 X-KDE-PluginInfo-EnabledByDefault=true
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-Name=tomatoid
-X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Version=2.0
 X-KDE-PluginInfo-Website=http://kde-apps.org/content/show.php/Tomatoid?content=152459
 X-KDE-ServiceTypes=Plasma/Applet,Plasma/PopupApplet
 X-Plasma-API=declarativeappletscript

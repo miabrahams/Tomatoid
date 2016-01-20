@@ -20,13 +20,13 @@
 import QtQuick 2.2
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import "plasmapackage:/code/logic.js" as Logic
+import "logic.js" as Logic
 
 PlasmaComponents.ToolBarLayout {
 	id: topBar
 
 	property string icon
-	property int spacing: 3
+	property int spacing: units.gridUnit * 30
 
 	property alias query: taskField
 
@@ -72,7 +72,6 @@ PlasmaComponents.ToolBarLayout {
 			id: estimatedPomosField
 			placeholderText: i18n("Est.")
 			height: addTaskButton.height
-			width: 50
 
 			validator: IntValidator { bottom: 1; top: 99 }
 

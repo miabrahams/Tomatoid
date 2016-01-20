@@ -88,7 +88,7 @@
 			Rectangle {
 				id: labelRect
 				// should be 40 when size is 90
-				width: Math.max(parent.size*4/9, 35)
+				width: Math.max(parent.size*4/9, units.gridUnit * 35)
 				height: width/2
 				anchors.centerIn: parent
 				color: theme.backgroundColor

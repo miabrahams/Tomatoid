@@ -94,7 +94,7 @@ Item {
 
 	PlasmaComponents.TabBar {
 		id: tabBar
-		height: 35
+		height: units.gridUnit * 35
 
 		currentTab: incompleteTaskList
 		onCurrentTabChanged: tomatoid.forceActiveFocus();
@@ -106,9 +106,9 @@ Item {
 			top: toolBar.bottom
 			left: parent.left
 			right: parent.right
-			margins: 7
-			leftMargin: 10
-			rightMargin: 10
+			margins: units.gridUnit * 7
+			leftMargin: units.gridUnit * 10
+			rightMargin: units.gridUnit * 10
 		}
 	}
 
@@ -129,8 +129,8 @@ Item {
 			left: parent.left
 			right: parent.right
 			bottom: parent.bottom
-			bottomMargin: timerActive ? 32 : 5
-			margins: 5
+			bottomMargin: units.gridUnit * (timerActive ? 32 : 5)
+			margins: units.gridUnit * 5
 
 			Behavior on bottomMargin {
 				NumberAnimation {
@@ -262,7 +262,7 @@ Item {
 	//chronometer with action buttons and regressive progress bar in the bottom. This will get the time from TomatoidTimer
 	Chronometer {
 		id: chronometer
-		height: 22
+		height: units.gridUnit * 22
 		seconds: timer.seconds
 		totalSeconds: timer.totalSeconds
 		opacity: timerActive * 1 //only show if timer is running
@@ -283,8 +283,8 @@ Item {
 			left: tomatoid.left
 			right: tomatoid.right
 			bottom: tomatoid.bottom
-			leftMargin: 5
-			bottomMargin: 5
+			leftMargin: units.gridUnit * 5
+			bottomMargin: units.gridUnit * 5
 		}
 	}
 }

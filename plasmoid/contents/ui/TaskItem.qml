@@ -38,7 +38,7 @@
 	property string undoIconImage: "media-seek-backward"
 
 	property int iconSize: 22
-	property int margin: 8
+	property int margin: units.gridUnit * 8
 
 	property bool timerRunning: tomatoid.timerActive
 
@@ -53,7 +53,7 @@
 	signal started()
 	signal exited()
 
-	height: 32
+	height: units.gridUnit * 32
 	anchors.leftMargin: margin
 	anchors.rightMargin: margin
 
@@ -115,8 +115,8 @@
 				visible: editMode
 				anchors.left: parent.left
 				anchors.right: toolBar.left
-				anchors.leftMargin: 4
-				anchors.rightMargin: 8
+				anchors.leftMargin: units.gridUnit * 4
+				anchors.rightMargin: units.gridUnit * 8
 				anchors.verticalCenter: parent.verticalCenter
 
 				Keys.onReturnPressed: {
@@ -129,7 +129,7 @@
 
 			Row {
 				id: toolBar
-				spacing: 5
+				spacing: units.gridUnit * 5
 				visible: !timerRunning
 				anchors.right: parent.right
 				anchors.verticalCenter: parent.verticalCenter

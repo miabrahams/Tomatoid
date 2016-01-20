@@ -31,7 +31,7 @@
 	property bool running: tomatoid.timer.running
 	property int seconds
 	property int totalSeconds
-	property int iconSize: 22
+	property int iconSize: units.gridUnit * 22
 
 	signal stopPressed()
 	signal playPressed()
@@ -39,7 +39,7 @@
 
 	Row {
 		id: buttons
-		spacing: 3
+		spacing: units.gridUnit * 3
 		visible: inPomodoro || inBreak
 
 		PlasmaComponents.ToolButton {
@@ -79,7 +79,7 @@
 		maximumValue: 1
 		value: seconds / totalSeconds
 		anchors {
-			margins: 4
+		  margins: units.gridUnit * 4
 			left: {
 				if(buttons.visible)
 				return buttons.right
@@ -95,9 +95,9 @@
 
 	Rectangle {
 		id: timerRect
-		radius: 2
-		width: 50
-		height: 20
+		radius: units.gridUnit * 2
+		width: units.gridUnit * 50
+		height: units.gridUnit * 20
 		border.width: 1
 		border.color: "#777777"
 		anchors {

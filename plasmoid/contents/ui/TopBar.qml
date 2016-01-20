@@ -59,8 +59,8 @@ PlasmaComponents.ToolBarLayout {
 	Row {
 		id: addTaskRow
 		visible: !tomatoid.inPomodoro && !tomatoid.inBreak
-		anchors.left: topBar.left
-		anchors.right: topBar.right
+		// anchors.left: parent.left
+		// anchors.right: parent.right
 
 		PlasmaCore.ToolTip {
 			id: estimatedPomosToolTip
@@ -86,8 +86,8 @@ PlasmaComponents.ToolBarLayout {
 			height: addTaskButton.height
 			anchors.leftMargin: topBar.spacing
 			anchors.rightMargin: topBar.spacing
-			anchors.left: estimatedPomosField.right
-			anchors.right: addTaskButton.left
+			// anchors.left: estimatedPomosField.right
+			// anchors.right: addTaskButton.left
 
 			Keys.onReturnPressed: {
 				add()
@@ -97,7 +97,7 @@ PlasmaComponents.ToolBarLayout {
 		PlasmaComponents.Button {
 			id: addTaskButton
 			iconSource: "list-add"
-			anchors.right: addTaskRow.right
+			// anchors.right: addTaskRow.right
 
 			onClicked: {
 				add();

@@ -31,34 +31,34 @@ Item {
 
 	property string appName: "Tomatoid"
 
-	property int minimumWidth: 280
-	property int minimumHeight: 320
+	property int minimumWidth: 600
+	property int minimumHeight: 800
 
-	property bool playNotificationSound: true
-	property bool playTickingSound: false
-	property bool playTickingSoundOnBreaks: false
-	property bool continuousMode: false
-	property bool inPomodoro: false
-	property bool inBreak: false
-	property bool timerActive: inPomodoro || inBreak
+	property bool playNotificationSound: plasmoid.configuration.playNotificationSound
+	property bool playTickingSound: plasmoid.configuration.playTickingSound
+  property bool playTickingSoundOnBreaks: false
+  property bool continuousMode: plasmoid.configuration.continuousMode
+  property bool inPomodoro: false
+  property bool inBreak: false
+  property bool timerActive: inPomodoro || inBreak
 
-	property bool popupNotification: true
-	property bool kdeNotification: false
-	property bool noNotification: false
+	property bool popupNotification: plasmoid.configuration.popupNotification
+	property bool kdeNotification: plasmoid.configuration.kdeNotification
+	property bool noNotification: plasmoid.configuration.noNotification
 
-	property int pomodoroLenght: 25
-	property int shortBreakLenght: 5
-	property int longBreakLenght: 20
-	property int pomodorosPerLongBreak: 4
+	property int pomodoroLength: plasmoid.configuration.pomodoroLength
+	property int shortBreakLength: plasmoid.configuration.shortBreakLength
+	property int longBreakLength: plasmoid.configuration.longBreakLength
+	property int pomodorosPerLongBreak: plasmoid.configuration.pomodorosPerLongBreak
 
-	property string actionStartTimer
-	property string actionStartBreak
-	property string actionEndBreak
-	property string actionEndCycle
+	property string actionStartTimer: plasmoid.configuration.actionStartTimer
+	property string actionStartBreak: plasmoid.configuration.actionStartBreak
+	property string actionEndBreak: plasmoid.configuration.actionEndBreak
+	property string actionEndCycle: plasmoid.configuration.actionEndCycle
 
 	property int completedPomodoros: 0
 
-	property int tickingVolume: 50
+	property int tickingVolume: plasmoid.configuration.tickingVolume
 
 	//************ /OPTIONS ************
 
@@ -69,35 +69,13 @@ Item {
 	property Item currentView: toolBarLayout.currentTab
 
 	Component.onCompleted: {
-		plasmoid.addEventListener("ConfigChanged", configChanged)
 
-		Logic.parseConfig("completeTasks", completeTasks)
-		Logic.parseConfig("incompleteTasks", incompleteTasks)
+		Logic.parseConfig(plasmoid.configuration.completeTasks, completeTasks)
+		Logic.parseConfig(plasmoid.configuration.incompleteTasks, incompleteTasks)
 
 		plasmoid.setBackgroundHints(0);
 		tomatoid.forceActiveFocus();
 	}
-
-
-	function configChanged() {
-		playNotificationSound 	        = plasmoid.readConfig("playNotificationSound");
-		tickingVolume 			= plasmoid.readConfig("tickingVolume");
-		playTickingSound 		= plasmoid.readConfig("playTickingSound");
-                playTickingSoundOnBreaks        = plasmoid.readConfig("playTickingSoundOnBreaks");
-		continuousMode 			= plasmoid.readConfig("continuousMode");
-		pomodoroLenght 			= plasmoid.readConfig("pomodoroLenght");
-		shortBreakLenght 		= plasmoid.readConfig("shortBreakLenght");
-		longBreakLenght 		= plasmoid.readConfig("longBreakLenght");
-		pomodorosPerLongBreak 	        = plasmoid.readConfig("pomodorosPerLongBreak");
-		popupNotification 		= plasmoid.readConfig("popupNotification");
-		kdeNotification 		= plasmoid.readConfig("kdeNotification");
-		noNotification 			= plasmoid.readConfig("noNotification");
-		actionStartTimer 		= plasmoid.readConfig("actionStartTimer");
-		actionStartBreak 		= plasmoid.readConfig("actionStartBreak");
-		actionEndBreak 			= plasmoid.readConfig("actionEndBreak");
-		actionEndCycle 			= plasmoid.readConfig("actionEndCycle");
-	}
-
 
 	property Component compactRepresentation: Component {
 		TomatoidIcon {

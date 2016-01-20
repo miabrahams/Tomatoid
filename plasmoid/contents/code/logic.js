@@ -30,11 +30,10 @@ var test = false;
 //     )
 // }
 
-function parseConfig(configName, model) {
-	var tasksSourcesString = plasmoid.readConfig(configName).toString();
+function parseConfig(sourcesString, model) {
 	var tasks = new Array();
-	if (tasksSourcesString.length > 0)
-		tasks = tasksSourcesString.split(sep2);
+	if (sourcesString.length > 0)
+		tasks = sourcesString.split(sep2);
 
 	for(var i = 0; i < tasks.length; i++) {
 		var task = tasks[i].split(sep);
@@ -43,25 +42,27 @@ function parseConfig(configName, model) {
 }
 
 function newTask(taskName, estimatedPomos) {
-	addTask(taskName, 0, estimatedPomos, incompleteTasks, "incompleteTasks");
+	insertIncompleteTask(taskName, 0, estimatedPomos);
 }
 
 function insertIncompleteTask(taskName, donePomos, estimatedPomos) {
-	addTask(taskName, donePomos, estimatedPomos, incompleteTasks, "incompleteTasks");
+  var tasks = addTask(taskName, donePomos, estimatedPomos, incompleteTasks);
+  plasmoid.configuration.incompleteTasks = tasks;
 }
 function insertCompleteTask(taskName, donePomos, estimatedPomos) {
-	addTask(taskName, donePomos, estimatedPomos, completeTasks, "completeTasks");
+	var tasks = addTask(taskName, donePomos, estimatedPomos, completeTasks);
+  plasmoid.configuration.completeTasks = tasks;
 }
 
 function removeIncompleteTask(id) {
-	return removeTask(id, incompleteTasks, "incompleteTasks");
+	return removeTask(id, incompleteTasks, plasmoid.configuration.incompleteTasks);
 }
 function removeCompleteTask(id) {
-	return removeTask(id, completeTasks, "completeTasks");
+	return removeTask(id, completeTasks, plasmoid.configuration.completeTasks);
 }
 
 
-function addTask(taskName, donePomos, estimatedPomos, model, configName) {
+function addTask(taskName, donePomos, estimatedPomos, model) {
 	var id = randomString(10);
 	var tasks = "";
 
@@ -79,11 +80,11 @@ function addTask(taskName, donePomos, estimatedPomos, model, configName) {
 	tasks += id + sep + taskName + sep + donePomos + sep + estimatedPomos
 
 	console.log("tasks: " + tasks);
-	plasmoid.writeConfig(configName, tasks);
 	model.append({"taskId":id, "taskName":taskName, "donePomos":donePomos, "estimatedPomos":estimatedPomos});
+  return tasks;
 }
 
-function removeTask(id, model, configName) {
+function removeTask(id, model, configName, configItem) {
 	var removedTask = "";
 	var tasks = "";
 	var index = 0;
@@ -104,7 +105,7 @@ function removeTask(id, model, configName) {
 
 	console.log("tasks: " + tasks);
 	console.log("Task to remove: " + removedTask);
-	plasmoid.writeConfig(configName, tasks);
+	configItem = tasks;
 	model.remove(index);
 
 	return removedTask;
@@ -133,7 +134,7 @@ function renameTask(id, taskName) {
 	}
 
 	console.log(id + ": " + tasks);
-	plasmoid.writeConfig("incompleteTasks", tasks);
+	plasmoid.configuration.incompleteTasks = tasks;
 	model.setProperty(index, "taskName", taskName);
 }
 
@@ -235,7 +236,7 @@ function completePomodoro(taskId) {
 	completedPomodoros += 1
 
 	console.log(tasks);
-	plasmoid.writeConfig("incompleteTasks", tasks);
+	plasmoid.configuration.incompleteTasks = tasks;
 	incompleteTasks.setProperty(index, "donePomos", incompleteTasks.get(index).donePomos + 1)
 }
 
